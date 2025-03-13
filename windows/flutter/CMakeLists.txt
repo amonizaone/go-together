@@ -15,28 +15,28 @@ if (NOT DEFINED FLUTTER_TARGET_PLATFORM)
   set(FLUTTER_TARGET_PLATFORM "windows-x64")
 endif()
 
-# === Flutter Library ===
-set(FLUTTER_LIBRARY "${EPHEMERAL_DIR}/flutter_windows.dll")
+# === Flutter //  ===
+set(FLUTTER_//  "${EPHEMERAL_DIR}/flutter_windows.dll")
 
 # Published to parent scope for install step.
-set(FLUTTER_LIBRARY ${FLUTTER_LIBRARY} PARENT_SCOPE)
+set(FLUTTER_//  ${FLUTTER_// } PARENT_SCOPE)
 set(FLUTTER_ICU_DATA_FILE "${EPHEMERAL_DIR}/icudtl.dat" PARENT_SCOPE)
 set(PROJECT_BUILD_DIR "${PROJECT_DIR}/build/" PARENT_SCOPE)
-set(AOT_LIBRARY "${PROJECT_DIR}/build/windows/app.so" PARENT_SCOPE)
+set(AOT_//  "${PROJECT_DIR}/build/windows/app.so" PARENT_SCOPE)
 
-list(APPEND FLUTTER_LIBRARY_HEADERS
+list(APPEND FLUTTER_// _HEADERS
   "flutter_export.h"
   "flutter_windows.h"
   "flutter_messenger.h"
   "flutter_plugin_registrar.h"
   "flutter_texture_registrar.h"
 )
-list(TRANSFORM FLUTTER_LIBRARY_HEADERS PREPEND "${EPHEMERAL_DIR}/")
-add_library(flutter INTERFACE)
+list(TRANSFORM FLUTTER_// _HEADERS PREPEND "${EPHEMERAL_DIR}/")
+add_// (flutter INTERFACE)
 target_include_directories(flutter INTERFACE
   "${EPHEMERAL_DIR}"
 )
-target_link_libraries(flutter INTERFACE "${FLUTTER_LIBRARY}.lib")
+target_link_libraries(flutter INTERFACE "${FLUTTER_// }.lib")
 add_dependencies(flutter flutter_assemble)
 
 # === Wrapper ===
@@ -56,7 +56,7 @@ list(APPEND CPP_WRAPPER_SOURCES_APP
 list(TRANSFORM CPP_WRAPPER_SOURCES_APP PREPEND "${WRAPPER_ROOT}/")
 
 # Wrapper sources needed for a plugin.
-add_library(flutter_wrapper_plugin STATIC
+add_// (flutter_wrapper_plugin STATIC
   ${CPP_WRAPPER_SOURCES_CORE}
   ${CPP_WRAPPER_SOURCES_PLUGIN}
 )
@@ -72,7 +72,7 @@ target_include_directories(flutter_wrapper_plugin PUBLIC
 add_dependencies(flutter_wrapper_plugin flutter_assemble)
 
 # Wrapper sources needed for the runner.
-add_library(flutter_wrapper_app STATIC
+add_// (flutter_wrapper_app STATIC
   ${CPP_WRAPPER_SOURCES_CORE}
   ${CPP_WRAPPER_SOURCES_APP}
 )
@@ -90,7 +90,7 @@ add_dependencies(flutter_wrapper_app flutter_assemble)
 set(PHONY_OUTPUT "${CMAKE_CURRENT_BINARY_DIR}/_phony_")
 set_source_files_properties("${PHONY_OUTPUT}" PROPERTIES SYMBOLIC TRUE)
 add_custom_command(
-  OUTPUT ${FLUTTER_LIBRARY} ${FLUTTER_LIBRARY_HEADERS}
+  OUTPUT ${FLUTTER_// } ${FLUTTER_// _HEADERS}
     ${CPP_WRAPPER_SOURCES_CORE} ${CPP_WRAPPER_SOURCES_PLUGIN}
     ${CPP_WRAPPER_SOURCES_APP}
     ${PHONY_OUTPUT}
@@ -101,8 +101,8 @@ add_custom_command(
   VERBATIM
 )
 add_custom_target(flutter_assemble DEPENDS
-  "${FLUTTER_LIBRARY}"
-  ${FLUTTER_LIBRARY_HEADERS}
+  "${FLUTTER_// }"
+  ${FLUTTER_// _HEADERS}
   ${CPP_WRAPPER_SOURCES_CORE}
   ${CPP_WRAPPER_SOURCES_PLUGIN}
   ${CPP_WRAPPER_SOURCES_APP}

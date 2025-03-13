@@ -19,22 +19,22 @@ function(list_prepend LIST_NAME PREFIX)
     set(${LIST_NAME} "${NEW_LIST}" PARENT_SCOPE)
 endfunction()
 
-# === Flutter Library ===
+# === Flutter //  ===
 # System-level dependencies.
 find_package(PkgConfig REQUIRED)
 pkg_check_modules(GTK REQUIRED IMPORTED_TARGET gtk+-3.0)
 pkg_check_modules(GLIB REQUIRED IMPORTED_TARGET glib-2.0)
 pkg_check_modules(GIO REQUIRED IMPORTED_TARGET gio-2.0)
 
-set(FLUTTER_LIBRARY "${EPHEMERAL_DIR}/libflutter_linux_gtk.so")
+set(FLUTTER_//  "${EPHEMERAL_DIR}/libflutter_linux_gtk.so")
 
 # Published to parent scope for install step.
-set(FLUTTER_LIBRARY ${FLUTTER_LIBRARY} PARENT_SCOPE)
+set(FLUTTER_//  ${FLUTTER_// } PARENT_SCOPE)
 set(FLUTTER_ICU_DATA_FILE "${EPHEMERAL_DIR}/icudtl.dat" PARENT_SCOPE)
 set(PROJECT_BUILD_DIR "${PROJECT_DIR}/build/" PARENT_SCOPE)
-set(AOT_LIBRARY "${PROJECT_DIR}/build/lib/libapp.so" PARENT_SCOPE)
+set(AOT_//  "${PROJECT_DIR}/build/lib/libapp.so" PARENT_SCOPE)
 
-list(APPEND FLUTTER_LIBRARY_HEADERS
+list(APPEND FLUTTER_// _HEADERS
   "fl_basic_message_channel.h"
   "fl_binary_codec.h"
   "fl_binary_messenger.h"
@@ -56,12 +56,12 @@ list(APPEND FLUTTER_LIBRARY_HEADERS
   "fl_view.h"
   "flutter_linux.h"
 )
-list_prepend(FLUTTER_LIBRARY_HEADERS "${EPHEMERAL_DIR}/flutter_linux/")
-add_library(flutter INTERFACE)
+list_prepend(FLUTTER_// _HEADERS "${EPHEMERAL_DIR}/flutter_linux/")
+add_// (flutter INTERFACE)
 target_include_directories(flutter INTERFACE
   "${EPHEMERAL_DIR}"
 )
-target_link_libraries(flutter INTERFACE "${FLUTTER_LIBRARY}")
+target_link_libraries(flutter INTERFACE "${FLUTTER_// }")
 target_link_libraries(flutter INTERFACE
   PkgConfig::GTK
   PkgConfig::GLIB
@@ -74,7 +74,7 @@ add_dependencies(flutter flutter_assemble)
 # since currently there's no way to get a full input/output list from the
 # flutter tool.
 add_custom_command(
-  OUTPUT ${FLUTTER_LIBRARY} ${FLUTTER_LIBRARY_HEADERS}
+  OUTPUT ${FLUTTER_// } ${FLUTTER_// _HEADERS}
     ${CMAKE_CURRENT_BINARY_DIR}/_phony_
   COMMAND ${CMAKE_COMMAND} -E env
     ${FLUTTER_TOOL_ENVIRONMENT}
@@ -83,6 +83,6 @@ add_custom_command(
   VERBATIM
 )
 add_custom_target(flutter_assemble DEPENDS
-  "${FLUTTER_LIBRARY}"
-  ${FLUTTER_LIBRARY_HEADERS}
+  "${FLUTTER_// }"
+  ${FLUTTER_// _HEADERS}
 )

@@ -11,17 +11,26 @@ dependencies:
   flutter:
     sdk: flutter 
   cupertino_icons: ^1.0.8
+  flutter_screenutil: ^5.9.3
+
+  flutter_bloc: ^9.0.0
+  equatable: ^2.0.7
+  go_router: ^14.8.0
+  get_it: ^8.0.3
+  dio: ^5.8.0+1
+  dio_smart_retry: ^7.0.1
+  pretty_dio_logger: ^1.4.0
+  mobile_scanner: ^6.0.6
+
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
-
-  # The "flutter_lints" package below contains a set of recommended lints to
-  # encourage good coding practices. The lint set provided by the package is
-  # activated in the `analysis_options.yaml` file located at the root of your
-  # package. See that file for information about deactivating specific lint
-  # rules and activating additional ones.
+ 
+  build_runner: ^2.4.15
+  freezed: ^2.5.8
   flutter_lints: ^5.0.0
+  freezed_annotation: ^2.4.4
  
 flutter: 
   uses-material-design: true
